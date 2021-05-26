@@ -6,7 +6,7 @@
         @keyup.enter='searchFilm'
       >
       <button class="btn"
-        @click="searchFilm"
+        @click.prevent="searchFilm"
       >Cerca</button>
     </div>
     <div class="box-film d-flex flex-wrap">
