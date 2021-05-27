@@ -1,33 +1,32 @@
 <template>
   <div class="container">
-    <div>
-      <input type="text" placeholder="Cerca film"
-        v-model.trim="query"
-        @keyup.enter='searchFilm'
-      >
-      <button class="btn"
-        @click.prevent="searchFilm"
-      >Cerca</button>
-    </div>
+    
+    <Search-Film 
+      @ricerca="searchFilm"
+    />
+
     <div class="box-film d-flex flex-wrap">
-      <ul
+      <Film 
         v-for="film in films"
         :key="film.id"
-      >
-        <li><h3>{{ film.title }}</h3></li>
-        <li><h3>{{ film.original_title }}</h3></li>
-        <li><h3>{{ film.original_language }}</h3></li>
-        <li><h3>{{ film.vote_average }}</h3></li>
-      </ul>
+        :film="film"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Film from './Film'
+import SearchFilm from './SearchFilm.vue'
 
 export default {
   name: 'MainComp',
+  components:{
+    Film,
+    SearchFilm
+    
+  },
   
   data(){
     return{
@@ -39,12 +38,12 @@ export default {
   },
 
   methods: {
-    searchFilm(){
+    searchFilm(searchText){
 
       axios.get(this.apiURL,{
         params:{
           api_key: this.apiKey,
-          query: this.query,
+          query: searchText,
           language: 'it-IT'
         }
       })
