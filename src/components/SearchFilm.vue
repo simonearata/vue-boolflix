@@ -1,13 +1,18 @@
 <template>
 
   <div>
-    <input type="text" placeholder="Cerca film"
+    <input type="text" placeholder="Cerca..."
       v-model.trim="searchText"
-      @keyup.enter='search'
     >
     <button class="btn"
-      @click.prevent="search"
-    >Cerca</button>
+      @click.prevent="$emit('ricerca',{text:searchText, type:'all'})"
+    >Cerca tutto</button>
+    <button class="btn"
+      @click.prevent="$emit('ricerca',{text:searchText, type:'films'})"
+    >Cerca film</button>
+    <button class="btn"
+      @click.prevent="$emit('ricerca',{text:searchText, type:'tv'})"
+    >Cerca serie tv</button>
   </div>
   
 </template>
@@ -18,16 +23,9 @@ export default {
 
   data(){
     return{
-      searchText: ''
+      searchText: '',
     }
   },
-
-  methods:{
-    search(){
-      this.$emit('ricerca', this.searchText);
-    }
-  }
-
 
 }
 </script>
