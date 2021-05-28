@@ -4,14 +4,15 @@
     <input type="text" placeholder="Cerca..."
       v-model.trim="searchText"
     >
+    <!-- bottoni -->
     <button class="btn"
-      @click.prevent="$emit('ricerca',{text:searchText, type:'all'})"
+      @click.prevent="emitFun('all')"
     >Cerca tutto</button>
     <button class="btn"
-      @click.prevent="$emit('ricerca',{text:searchText, type:'films'})"
+      @click.prevent="emitFun('movie')"
     >Cerca film</button>
     <button class="btn"
-      @click.prevent="$emit('ricerca',{text:searchText, type:'tv'})"
+      @click.prevent="emitFun('tv')"
     >Cerca serie tv</button>
   </div>
   
@@ -26,6 +27,12 @@ export default {
       searchText: '',
     }
   },
+
+  methods:{
+    emitFun(type){
+      this.$emit('searching',{text:this.searchText, type:type});
+    }
+  }
 
 }
 </script>
