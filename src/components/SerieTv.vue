@@ -2,19 +2,19 @@
   <div class="flip-card">
     <div class="flip-card-inner">
       <div class="flip-card-front">
-        <img :src="'https://image.tmdb.org/t/p/w342' + film.poster_path" alt="">
+        <img :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
       </div>
       <div class="flip-card-back">
         <ul>
-          <li><h4>{{ film.title }}</h4></li>
+          <li><h4>{{  serie.name }}</h4></li>
           <li
-            v-if="film.title != film.original_title"
-          ><h4>{{ film.original_title }}</h4></li>
-          <li><h4><flag :iso="film.original_language === 'en' ? 'gb' : film.original_language"/></h4></li>
+            v-if="serie.name != serie.original_name"
+          ><h4>{{  serie.original_name }}</h4></li>
+          <li><h4><flag :iso="serie.original_language === 'en' ? 'gb' : serie.original_language"/></h4></li>
           <li>
             <h4 v-for="index in 5" :key="index">
               <i
-                v-if="index <= Math.ceil((film.vote_average * 5) / 10)"
+                v-if="index <= Math.ceil((serie.vote_average * 5) / 10)"
                 class="fas fa-star"
               ></i>  
               <i
@@ -28,14 +28,15 @@
     </div>
   </div>
 </template>
+        
 
 <script>
 export default {
-  name: 'Movie',
+  name: 'SerieTv',
   props: {
-    film: Object
+    serie: Object
   },
-  
+
   methods:{
     returnNum(){
       
@@ -46,5 +47,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/movie';
+@import '../assets/styles/serietv';
 </style>

@@ -6,13 +6,27 @@
       @searching="searching"
     />
 
-    <div class="box-film d-flex flex-wrap">
-
-      <movie 
-        v-for="film in results[type]"
-        :key="film.id"
-        :film="film"
-      />
+    <div>
+      <h2
+        v-if="this.results.tv.length != 0"
+      >Serie tv trovate</h2>
+      <div class="d-flex flex-wrap container box-serie">
+        <serie-tv
+          v-for="serie in results.tv"
+          :key="serie.id"
+          :serie="serie"
+        />
+      </div>
+      <h2
+        v-if="this.results.tv.length != 0"
+      >Film trovati</h2>
+      <div class="d-flex flex-wrap container box-movie">
+        <movie 
+          v-for="film in results.movie"
+          :key="film.id"
+          :film="film"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -21,12 +35,14 @@
 import axios from 'axios'
 import SearchFilm from './SearchFilm.vue'
 import Movie from './Movie.vue'
+import SerieTv from './SerieTv.vue'
 
 export default {
   name: 'MainComp',
   components:{
     SearchFilm,
-    Movie
+    Movie,
+    SerieTv
   },
   
   data(){
@@ -92,8 +108,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  ul{
-    background-color: burlywood;
-    margin: 10px;
-  }
+@import '../assets/styles/general';
 </style>
