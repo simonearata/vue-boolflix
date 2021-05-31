@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div class="box_button">
     <input type="text" placeholder="Cerca..."
       v-model.trim="searchText"
     >
@@ -38,5 +38,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '../assets/styles/searchfilm.scss';
 </style>

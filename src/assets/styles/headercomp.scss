@@ -1,0 +1,33 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  .header_nav_left{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    .box_logo{
+      margin: 0 30px;
+      color: red;
+    }
+    button{
+      margin: 0 15px;
+      color: white;
+      background-color: #141414;
+      border: none;
+    }
+  }
+  .header_nav_right{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    .fontaw{
+      margin-right: 50px;
+    }
+    button{
+      margin: 0 15px;
+      color: white;
+      background-color: #141414;
+      border: none;
+    }
+  }
+}

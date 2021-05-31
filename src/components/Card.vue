@@ -2,19 +2,19 @@
   <div class="flip-card">
     <div class="flip-card-inner">
       <div class="flip-card-front">
-        <img :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
+        <img :src="'https://image.tmdb.org/t/p/w342' + card.poster_path" alt="">
       </div>
       <div class="flip-card-back">
         <ul>
-          <li><h4>{{  serie.name }}</h4></li>
+          <li><h4>{{ card.title || card.name }}</h4></li>
           <li
-            v-if="serie.name != serie.original_name"
-          ><h4>{{  serie.original_name }}</h4></li>
-          <li><h4><flag :iso="serie.original_language === 'en' ? 'gb' : serie.original_language"/></h4></li>
+            v-if="card.title != card.original_title"
+          ><h4>{{ card.original_title || card.original_name }}</h4></li>
+          <li><h4><flag :iso="card.original_language === 'en' ? 'gb' : card.original_language"/></h4></li>
           <li>
             <h4 v-for="index in 5" :key="index">
               <i
-                v-if="index <= Math.ceil((serie.vote_average * 5) / 10)"
+                v-if="index <= Math.ceil((card.vote_average * 5) / 10)"
                 class="fas fa-star"
               ></i>  
               <i
@@ -28,24 +28,24 @@
     </div>
   </div>
 </template>
-        
 
 <script>
 export default {
-  name: 'SerieTv',
-  props: {
-    serie: Object
-  },
+  name: 'Card',
 
+  props: {
+    card: Object
+  },
+  
   methods:{
     returnNum(){
       
-      return Math.ceil((this.film.vote_average * 5) / 10)
+      return Math.ceil((this.card.vote_average * 5) / 10)
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../assets/styles/serietv';
+<style>
+@import '../assets/styles/card.scss';
 </style>
