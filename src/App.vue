@@ -3,7 +3,7 @@
     
     <header-comp  
       @searching="searching"
-      @popolar="popolar"
+      @popular="popular"
     />
 
     <main-comp 
@@ -84,14 +84,15 @@ export default {
         console.log(err)
       })
     },
-    
+
     popular(type){
       if(type === 'movie'){
         this.popularMovie();
-      }else{
-        this.searchFilm(obj.text, obj.type);
+        console.log(this.results.movie)
+      }else if(type === 'tv'){
+        this.popularMovie();
+        console.log(this.results.tv)
       }
-      console.log(obj)
     },
 
     popularMovie(){

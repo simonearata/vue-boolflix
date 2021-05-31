@@ -58,7 +58,7 @@ export default {
     },
     
     emitPopular(type){
-      this.$emit('popolar', type);
+      this.$emit('popular', type);
     },
 
     myActive(){
