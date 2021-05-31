@@ -7,9 +7,11 @@
       <div class="box_button">
         <button>Home</button>
         <button
-          @click.prevent="emitType('tv')"
+          @click.prevent="emitPopular('tv')"
         >Serie TV</button>
-        <button>Film</button>
+        <button
+          @click.prevent="emitPopular('movie')"
+        >Film</button>
         <button>Popolari</button>
       </div>
     </div>
@@ -53,6 +55,10 @@ export default {
   methods:{
     emitFun(type){
       this.$emit('searching',{text:this.searchText, type:type});
+    },
+    
+    emitPopular(type){
+      this.$emit('popolar', type);
     },
 
     myActive(){

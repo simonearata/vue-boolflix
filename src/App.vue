@@ -3,6 +3,7 @@
     
     <header-comp  
       @searching="searching"
+      @popolar="popolar"
     />
 
     <main-comp 
@@ -31,6 +32,7 @@ export default {
   },
   data(){
     return{
+      apiURL_2: 'https://api.themoviedb.org/3/',
       apiURL: 'https://api.themoviedb.org/3/search/',
       apiKey: '953d71539729d361f94a4214aeaf03a5',
       // creao un oggetto con le due ricerche
@@ -82,14 +84,48 @@ export default {
         console.log(err)
       })
     },
-
-    created(){
-      
-      let popular = 
-    }
-
     
+    popular(type){
+      if(type === 'movie'){
+        this.popularMovie();
+      }else{
+        this.searchFilm(obj.text, obj.type);
+      }
+      console.log(obj)
+    },
+
+    popularMovie(){
+      axios.get('https://api.themoviedb.org/3/movie/popular',{
+        params:{
+          api_key: this.apiKey,
+          language: 'it-IT'
+        }
+      })
+      .then(res => {
+        this.results[type] = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
+
+
+    popularTv(){
+      axios.get('https://api.themoviedb.org/3/tv/popular',{
+        params:{
+          api_key: this.apiKey,
+          language: 'it-IT'
+        }
+      })
+      .then(res => {
+        this.results[type] = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
   },
+
 
 }
 </script>
