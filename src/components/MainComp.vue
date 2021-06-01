@@ -2,8 +2,7 @@
   <div class="container">
     <div>
       <h2>{{ titles[type] }}</h2>
-      <div class="container box-serie">
-        
+      <div class="box-all">
         <card
           v-for="card in list"
           :key="card.id"
@@ -13,6 +12,7 @@
     </div>
   </div>
 </template>
+        
 
 <script>
 import Card from './Card.vue'
@@ -34,8 +34,8 @@ export default {
   data(){
     return{
       titles:{
-        'movie': 'Film trovati',
-        'tv': 'Serie tv trovate',
+        'movie': 'Film',
+        'tv': 'Serie tv',
       },
     }
   }

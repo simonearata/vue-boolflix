@@ -5,14 +5,15 @@
         <h1>BOOFLIX</h1>
       </div>
       <div class="box_button">
-        <button>Home</button>
+        <button
+          @click.prevent="emitReset()"
+        >Home</button>
         <button
           @click.prevent="emitPopular('tv')"
         >Serie TV</button>
         <button
           @click.prevent="emitPopular('movie')"
         >Film</button>
-        <button>Popolari</button>
       </div>
     </div>
 
@@ -63,6 +64,10 @@ export default {
 
     myActive(){
       this.isHidden = !this.isHidden
+    },
+
+    emitReset(){
+      this.$emit('resetResults')
     }
   }
 }

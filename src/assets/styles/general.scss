@@ -6,9 +6,16 @@
   box-sizing: border-box;
 }
 
+#app{
+  min-width: 1250px;
+}
+
 body{
   background-color: #141414;
-  min-width: 1250px;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
 }
 
 .box-serie{

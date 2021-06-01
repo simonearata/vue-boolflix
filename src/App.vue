@@ -1,19 +1,23 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     
     <header-comp  
       @searching="searching"
       @popular="popular"
+      @resetResults="resetResults"
     />
 
+    <video-comp/>
+
     <main-comp 
-      v-if="results.movie.length > 0" type='movie' :list="results.movie"
+      v-if="results.movie.length > 0"  type='movie' :list="results.movie"
     />
 
     <main-comp 
       v-if="results.tv.length > 0" type='tv' :list="results.tv"
     />
 
+    
   </div>
 </template>
 
@@ -21,15 +25,19 @@
 import axios from 'axios'
 import HeaderComp from './components/HeaderComp.vue'
 import MainComp from './components/MainComp.vue'
+import VideoComp from './components/VideoComp.vue'
+
+
 
 
 export default {
   name: 'App',
   components: {
     MainComp,
-    HeaderComp
-    
+    HeaderComp,
+    VideoComp,
   },
+  
   data(){
     return{
       apiURL_2: 'https://api.themoviedb.org/3/',
@@ -86,16 +94,17 @@ export default {
     },
 
     popular(type){
+      this.resetResults();
       if(type === 'movie'){
-        this.popularMovie();
-        console.log(this.results.movie)
+        this.popularMovie('movie');
+        console.log(this.popularMovie)
       }else if(type === 'tv'){
-        this.popularMovie();
-        console.log(this.results.tv)
+        this.popularTv('tv');
+        console.log(type)
       }
     },
 
-    popularMovie(){
+    popularMovie(type){
       axios.get('https://api.themoviedb.org/3/movie/popular',{
         params:{
           api_key: this.apiKey,
@@ -104,6 +113,7 @@ export default {
       })
       .then(res => {
         this.results[type] = res.data.results;
+        console.log(this.results.movie)
       })
       .catch(err => {
         console.log(err);
@@ -111,7 +121,7 @@ export default {
     },
 
 
-    popularTv(){
+    popularTv(type){
       axios.get('https://api.themoviedb.org/3/tv/popular',{
         params:{
           api_key: this.apiKey,
@@ -120,6 +130,7 @@ export default {
       })
       .then(res => {
         this.results[type] = res.data.results;
+        console.log(this.results.tv)
       })
       .catch(err => {
         console.log(err);
